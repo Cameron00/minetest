@@ -180,6 +180,29 @@ function mm_texture.set_dirt_bg()
 	end
 	
 	-- Use universal fallback texture in textures/base/pack
-	local minimalpath = defaulttexturedir .. "menu_bg.png"
-	core.set_background("background", minimalpath, true, 128)
+	
+	--NEW (changed to fix bug, commented out to use our feature
+	--local minimalpath = defaulttexturedir .. "menu_bg.png"
+	--core.set_background("background", minimalpath, true, 128)
+	mm_texture.set_random_bg()
 end
+
+--NEW This fuction is our feature, it makes the texture random at each start up.
+function mm_texture.set_random_bg()
+	math.randomseed(os.time())
+	local Random = math.random(1,3)
+	if Random == 1 then
+		local randompath = defaulttexturedir .. "menu_bg.png"
+		core.set_background("background", randompath, true, 128)
+	end
+	if Random == 2 then 
+		local randompath = defaulttexturedir .. "rainbow_bg.png"
+		core.set_background("background", randompath, true, 128)
+	end
+	if Random == 3 then
+		local randompath = defaulttexturedir .. "redstone_bg.png"
+		core.set_background("background", randompath, true, 128)
+	end
+end
+	
+		
